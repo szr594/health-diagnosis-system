@@ -1,0 +1,60 @@
+# =============================================================================
+# 大健康智能问诊系统 - Java 后端配置
+# 支持通过环境变量覆盖数据库/Redis/AI服务地址，便于本地与 Docker 部署
+# =============================================================================
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: health-diagnosis-backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/health_diagnosis_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:your_db_password}
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      database: 0
+      timeout: 3000ms
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+# MyBatis-Plus
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+
+# =============================================================================
+# 自定义业务配置
+# =============================================================================
+health:
+  jwt:
+    # JWT 密钥（生产环境务必通过环境变量覆盖）
+    secret: ${JWT_SECRET:health-diagnosis-jwt-secret-key-please-change-in-prod}
+    expire-hours: 24
+  ai:
+    # Python AI 服务地址
+    base-url: ${AI_BASE_URL:http://localhost:8001}
+    # 调用 AI 服务的超时时间（毫秒）
+    timeout-ms: 60000
+    # 是否允许 AI 失败时降级返回
+    fallback-enabled: true
+  redis:
+    # 问诊结果缓存 TTL（秒）
+    cache-ttl: 600
+
+logging:
+  level:
+    com.health.diagnosis: debug

@@ -1,0 +1,57 @@
+# ============ 大健康智能问诊系统 - Git 忽略规则 ============
+
+# Java
+backend/target/
+backend/*.jar
+backend/*.log
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# Python
+ai-service/__pycache__/
+ai-service/**/*.pyc
+ai-service/.venv/
+ai-service/.env
+venv/
+ai-service/data/
+
+# 环境变量（含密钥，禁止上传）
+.env
+*.env.local
+
+# Node
+node_modules/
+dist/
+
+# 数据库文件
+*.db
+data/
+
+# WorkBuddy / Claude / MCP 工作目录
+.workbuddy/
+.claude/
+.playwright-mcp/
+
+# 临时文件
+*.pdf
+*.lst
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log
+logistics-qa-system/
+
+# 物流项目为独立仓库
+logistics-qa-system/

@@ -1,0 +1,23 @@
+# ==============================================================
+# 大健康智能问诊系统 - Python AI 服务依赖
+# 安装：pip install -r requirements.txt
+# ==============================================================
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+pydantic-settings>=2.4
+python-dotenv>=1.0
+python-multipart>=0.0.9
+
+# LangChain 核心与社区组件
+langchain>=0.3
+langchain-core>=0.3
+langchain-community>=0.3
+langchain-openai>=0.2
+langchain-text-splitters>=0.3
+
+# 向量数据库
+chromadb>=0.5,<1.0
+
+# 本地中文嵌入模型（会自动安装 torch）
+sentence-transformers>=3.0
